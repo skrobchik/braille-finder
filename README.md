@@ -1,4 +1,5 @@
 Author: Robert Serrano Kobylyansky
+
 Date: 2022-11-03
 
 This small program was writen to design an actuator mechanism for a
