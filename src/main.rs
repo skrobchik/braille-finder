@@ -25,6 +25,7 @@ fn main() {
     let pattern_len = 5;
     if let Some((length, answers)) = (pattern_len..=max_length)
         .map(|length| {
+            println!("length: {}", length);
             (length, (0..2_u32.pow(length)).into_par_iter()
                 .find_any(|n| {
                     (0..2_u32.pow(pattern_len)).into_par_iter().all(|p| {
