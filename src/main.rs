@@ -21,14 +21,14 @@ use rayon::prelude::*;
 /// The goal is to find the shortest rail which can be used to represent all
 /// the dot patterns. `rayon` crate is used to parallelize the search, and speed things up.
 fn main() {
-    let max_length = 32;
+    let max_length = 64;
     let pattern_len = 5;
     if let Some((length, answers)) = (pattern_len..=max_length)
         .map(|length| {
             println!("length: {}", length);
-            (length, (0..2_u32.pow(length)).into_par_iter()
+            (length, (0..2_u64.pow(length)).into_par_iter()
                 .find_any(|n| {
-                    (0..2_u32.pow(pattern_len)).into_par_iter().all(|p| {
+                    (0..2_u64.pow(pattern_len)).into_par_iter().all(|p| {
                         (0..(length - pattern_len + 1))
                             .any(|i| (0..pattern_len).all(|j| (n >> (i + j)) & 1 == (p >> j) & 1))
                     })
@@ -41,3 +41,6 @@ fn main() {
             println!("No answers found with max length {}", max_length);
         }
 }
+
+/// For anyone curious the answer is:
+/// 001110000010001100101011011111010011
