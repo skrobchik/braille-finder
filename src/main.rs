@@ -21,24 +21,21 @@ use rayon::prelude::*;
 /// The goal is to find the shortest rail which can be used to represent all
 /// the dot patterns. `rayon` crate is used to parallelize the search, and speed things up.
 fn main() {
-    let max_length = 20;
-    let pattern_len = 4;
+    let max_length = 32;
+    let pattern_len = 5;
     if let Some((length, answers)) = (pattern_len..=max_length)
         .map(|length| {
-            (length, (0..2_u32.pow(length))
-                .filter(|n| {
+            (length, (0..2_u32.pow(length)).into_par_iter()
+                .find_any(|n| {
                     (0..2_u32.pow(pattern_len)).into_par_iter().all(|p| {
                         (0..(length - pattern_len + 1))
                             .any(|i| (0..pattern_len).all(|j| (n >> (i + j)) & 1 == (p >> j) & 1))
                     })
-                })
-                .collect::<Vec<u32>>())
+                }))
         })
-        .find_map(|(length, v)| if !v.is_empty() { Some((length, v)) } else { None }) {
-            println!("Found {} answers with length {}", answers.len(), length);
-            for answer in answers {
-                println!("{:0width$b}", answer, width = length.try_into().unwrap());
-            }
+        .find_map(|(length, v)| v.map(|v| (length, v))) {
+            println!("Found answer!)");
+            println!("{:0width$b}", answers, width = length.try_into().unwrap());
         } else {
             println!("No answers found with max length {}", max_length);
         }
