@@ -2,6 +2,8 @@
 name = "braille-finder"
 version = "0.1.0"
 edition = "2021"
+author = "Robert Serrano Kobylyansky <robertkobylyansky@gmail.com>"
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
