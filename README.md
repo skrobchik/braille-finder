@@ -1,11 +1,12 @@
 Author: Robert Serrano Kobylyansky
+
 Date: 2022-11-03
 
-This small program was writen to design an actuator mechanism for a
+This small program was writen to design an actuator mechanism for an
 8-dot braille cell. There are two actuators, one for each column
 of dots. Each column has 4 dots, that is the `pattern_len`. The actuator
-works by moving a rail that has is engraved in such a way so that
-it contains all the possible combinations of dots. The rail is moved
+works by moving a rail that is engraved in such a way so that
+it contains all the possible permutations of dots. The rail is moved
 by a stepper motor to the desired position, resulting in the corresponding
 dots being raised.
 ```
