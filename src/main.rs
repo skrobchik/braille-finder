@@ -42,5 +42,5 @@ fn main() {
         }
 }
 
-/// For anyone curious the answer is:
-/// 001110000010001100101011011111010011
+// For anyone curious the answer is:
+// 001110000010001100101011011111010011
